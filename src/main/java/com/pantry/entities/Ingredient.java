@@ -1,11 +1,6 @@
 package com.pantry.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "ingredients")
@@ -18,7 +13,16 @@ public class Ingredient {
     @Column(name = "name")
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
+
     public Ingredient() {
+    }
+
+    public Ingredient(String name, Recipe recipe) {
+        this.name = name;
+        this.recipe = recipe;
     }
 
     public Ingredient(String name) {
@@ -39,5 +43,13 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 }

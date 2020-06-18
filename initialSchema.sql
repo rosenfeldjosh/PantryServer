@@ -2,20 +2,24 @@ BEGIN TRANSACTION;
 
 CREATE TABLE IF NOT EXISTS recipes(
     id serial,
-    title text,
+    title text NOT NULL,
     content_link text,
     CONSTRAINT unique_recipe_id UNIQUE(id)
 );
 
 CREATE TABLE IF NOT EXISTS ingredients(
     id serial,
-    name text,
+    name text NOT NULL,
+    recipe_id int REFERENCES recipes(id),
+    -- the schema is designed like this to be cognizant of a future where we might
+    -- need to add quantity
     CONSTRAINT unique_ingredient_id UNIQUE(id)
 );
 
-CREATE TABLE recipe_ingredients( -- if we were to consider quantity, it would go here I think
-    ingredient_id integer REFERENCES ingredients(id) ON DELETE CASCADE,
-    recipe_id integer REFERENCES recipes(id) ON DELETE CASCADE
+CREATE TABLE IF NOT EXISTS instructions(
+    recipe_id int REFERENCES recipes(id),
+    step_number int NOT NULL,
+    step_text text NOT NULL,
+    PRIMARY KEY(recipe_id, step_number)
 );
-
 COMMIT;

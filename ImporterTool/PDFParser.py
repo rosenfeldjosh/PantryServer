@@ -35,6 +35,8 @@ for filename in files:
                         and tokenized_ingredient not in stop_words
                         and not bool(re.search(r'\d', tokenized_ingredient))
                         and not tokenized_ingredient in measurements]))
+        # before we send it over to the server, let's manually make sure each ingredient we are sending is in valid
+        # format. Not ideal, but the real programatic solution is much more involved.
 
     ingredients_post_endpoint = 'http://localhost:8080/postNewRecipe'
     payload = {'title': title, 'ingredients': reduced_ingredients}
