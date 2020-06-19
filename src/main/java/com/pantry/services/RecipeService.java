@@ -9,6 +9,7 @@ import com.pantry.respositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -46,5 +47,26 @@ public class RecipeService {
         recipeRepository.save(newRecipe);
         ingredientsService.createAndMapFromDTO(recipeDTO.getIngredients(), newRecipe);
         instructionsService.createAndMapFromDTO(recipeDTO.getInstructions(), newRecipe);
+    }
+
+    public Double scoreRecipeForIngredients(List<String> ingredientNames, Recipe recipe) {
+        int numberOfIngredientsInRecipe = recipe.getIngredients().size();
+        long numberOfMutualIngredients = recipe.getIngredients()
+                .stream()
+                .filter(ingredient -> ingredientNames.contains(ingredient.getName()))
+                .count();
+        // the amount of mutual ingredients is important, but we don't want to always value recipes with less
+        double percentageOfRecipeCovered = (double) numberOfMutualIngredients/numberOfIngredientsInRecipe;
+        return percentageOfRecipeCovered * numberOfMutualIngredients;
+    }
+
+    /**
+     * Finds all recipes that contain the ingredients given. Then prioritizes them based on a calculated "score"
+     */
+    public List<Recipe> findRecipesByIngredients(List<String> ingredientNames) {
+        return recipeRepository.findRecipesByIngredientNames(ingredientNames)
+                .stream()
+                .sorted(Comparator.comparing((Recipe recipe) -> scoreRecipeForIngredients(ingredientNames, recipe)))
+                .collect(Collectors.toList());
     }
 }
