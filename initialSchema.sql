@@ -4,7 +4,9 @@ CREATE TABLE IF NOT EXISTS recipes(
     id serial,
     title text NOT NULL,
     content_link text,
-    CONSTRAINT unique_recipe_id UNIQUE(id)
+    image_link text,
+    CONSTRAINT unique_recipe_id UNIQUE(id),
+    CONSTRAINT unique_content_link UNIQUE(content_link)
 );
 
 CREATE TABLE IF NOT EXISTS ingredients(

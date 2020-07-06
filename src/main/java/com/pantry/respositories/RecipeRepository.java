@@ -12,7 +12,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
     @Query(
             "SELECT recipe " +
             "FROM Ingredient ingredient " +
-            "JOIN ingredient.recipe Recipe " +
+            "JOIN ingredient.recipe recipe " +
             "WHERE ingredient.name IN :ingredientNames"
     )
     List<Recipe> findRecipesByIngredientNames(@Param(value = "ingredientNames") List<String> ingredientNames);
