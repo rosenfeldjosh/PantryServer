@@ -1,3 +1,4 @@
 textract
 nltk
 requests
+bs4

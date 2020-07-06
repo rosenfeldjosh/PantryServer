@@ -43,7 +43,7 @@ public class RecipeService {
     }
 
     public void addNewRecipe(RecipeDTO recipeDTO) {
-        Recipe newRecipe = new Recipe(recipeDTO.getTitle());
+        Recipe newRecipe = new Recipe(recipeDTO.getTitle(), recipeDTO.getContentLink(), recipeDTO.getImageLink());
         recipeRepository.save(newRecipe);
         ingredientsService.createAndMapFromDTO(recipeDTO.getIngredients(), newRecipe);
         instructionsService.createAndMapFromDTO(recipeDTO.getInstructions(), newRecipe);

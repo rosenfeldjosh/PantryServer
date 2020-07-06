@@ -17,6 +17,12 @@ public class Recipe implements Serializable {
     @Column(name = "title")
     private String name;
 
+    @Column(name = "content_link")
+    private String contentLink;
+
+    @Column(name = "image_link")
+    private String imageLink;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipe")
     private List<Ingredient> ingredients;
 
@@ -29,6 +35,12 @@ public class Recipe implements Serializable {
     public Recipe(String name, List<Ingredient> ingredients) {
         this.name = name;
         this.ingredients = ingredients;
+    }
+
+    public Recipe(String name, String contentLink, String imageLink) {
+        this.name = name;
+        this.contentLink = contentLink;
+        this.imageLink = imageLink;
     }
 
     public Recipe(String name) {
@@ -59,6 +71,22 @@ public class Recipe implements Serializable {
 
     public List<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    public String getContentLink() {
+        return contentLink;
+    }
+
+    public void setContentLink(String contentLink) {
+        this.contentLink = contentLink;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public void setIngredients(List<Ingredient> ingredients) {
