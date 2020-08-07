@@ -1,10 +1,7 @@
 package com.pantry.services;
 
-import com.pantry.entities.Ingredient;
-import com.pantry.entities.Instruction;
 import com.pantry.entities.Recipe;
 import com.pantry.model.RecipeDTO;
-import com.pantry.respositories.IngredientRepository;
 import com.pantry.respositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Service
 public class RecipeService {

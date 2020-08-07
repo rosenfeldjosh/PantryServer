@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS ingredients(
     id serial,
     name text NOT NULL,
     recipe_id int REFERENCES recipes(id),
-    -- the schema is designed like this to be cognizant of a future where we might
-    -- need to add quantity
+    numeric_quantity int NOT NULL,
+    quantity_type text,
     CONSTRAINT unique_ingredient_id UNIQUE(id)
 );
 
