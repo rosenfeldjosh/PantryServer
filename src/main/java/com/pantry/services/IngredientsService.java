@@ -1,7 +1,9 @@
 package com.pantry.services;
 
+import com.digidemic.unitof.UnitOf;
 import com.pantry.entities.Ingredient;
 import com.pantry.entities.Recipe;
+import com.pantry.model.QuantityType;
 import com.pantry.respositories.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,4 +37,5 @@ public class IngredientsService {
         newIngredient.setRecipe(recipe);
         return ingredientRepository.save(newIngredient);
     }
+
 }

@@ -1,11 +1,13 @@
 package com.pantry.model;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
 public enum QuantityType {
     TEASPOON("teaspoon", "teaspoons"),
     TABLESPOON("tablespoon", "tablespoons"),
+    POUND("pound", "pounds"),
     BLANK("");
 
     private final List<java.lang.String> values;
@@ -25,5 +27,13 @@ public enum QuantityType {
             }
         }
         return null;
+    }
+
+    public static boolean isVolumetric(QuantityType quantityType) {
+        return Arrays.asList(QuantityType.TABLESPOON, QuantityType.TABLESPOON).contains(quantityType);
+    }
+
+    public static boolean isMass(QuantityType quantityType) {
+        return Arrays.asList(QuantityType.POUND).contains(quantityType);
     }
 }
