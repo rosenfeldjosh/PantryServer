@@ -1,6 +1,5 @@
 package com.pantry.services;
 
-import com.digidemic.unitof.UnitOf;
 import com.pantry.entities.Instruction;
 import com.pantry.entities.Recipe;
 import com.pantry.respositories.InstructionRepository;

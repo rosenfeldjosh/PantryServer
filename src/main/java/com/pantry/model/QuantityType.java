@@ -36,4 +36,12 @@ public enum QuantityType {
     public static boolean isMass(QuantityType quantityType) {
         return Arrays.asList(QuantityType.POUND).contains(quantityType);
     }
+
+    public static double tablespoonToGram(double tablespoons) {
+        return tablespoons * 12.781700527272;
+    }
+
+    public static double poundToGram(double pounds) {
+        return pounds * 453.592;
+    }
 }

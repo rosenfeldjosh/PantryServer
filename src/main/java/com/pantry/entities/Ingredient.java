@@ -1,6 +1,5 @@
 package com.pantry.entities;
 
-import com.digidemic.unitof.UnitOf;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.pantry.entities.util.Detailed;
 import com.pantry.entities.util.Minimal;
@@ -105,11 +104,11 @@ public class Ingredient {
     }
 
     public static double convertFromTablespoons(Ingredient ingredient) {
-        return new UnitOf.Volume().fromTablespoonsUS(ingredient.getQuantityNumber()).toTeaspoonsMetric();
+        return QuantityType.tablespoonToGram(ingredient.getQuantityNumber());
     }
 
     public static double convertFromPounds(Ingredient ingredient) {
-        return new UnitOf.Mass().fromPounds(ingredient.getQuantityNumber()).toMilligrams();
+        return QuantityType.poundToGram(ingredient.getQuantityNumber());
     }
 
     public static double convertVolumetricValue(Ingredient ingredient) {
