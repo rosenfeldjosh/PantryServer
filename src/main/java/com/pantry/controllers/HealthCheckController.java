@@ -11,4 +11,6 @@ public class HealthCheckController {
         return "200 ok";
     }
 
+    @GetMapping("hiJasmine")
+    public String hiJasmine() {return "Hi Jasmine :) Happy Friday! I love you <3";}
 }
